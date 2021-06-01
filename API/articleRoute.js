@@ -1,4 +1,5 @@
 const Article = require('../models/Article')
+const mongoose = require('mongoose')
 
 module.exports=[
     {
@@ -14,12 +15,14 @@ module.exports=[
         method:'POST',
         path:'/article/',
         handler: async(request, response)=>{
-            articleData = response.payload;
+            articleData = request.payload;
             let newArticle = new Article({
-                userId: articleData.userId,
+                userId: mongoose.Types.ObjectId(articleData.userId),
                 title: articleData.title,
                 summary: articleData.summary,
             })
+            await newArticle.save();
+            return response.response(newArticle)
         }
 
     }
