@@ -25,6 +25,7 @@ const init = async()=>{
 }
 
 process.on('unhandledRejection', (err)=>{
+    console.error("Error in shore backend.")
     console.error(err);
     process.exit(1);
 })
