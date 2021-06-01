@@ -3,11 +3,9 @@ const Hapi = require('@hapi/hapi')
 const mongoose = require('mongoose')
 const routeIndex = require('./API/index')
 
-const { startSession } = require('mongoose')
-
 const init = async()=>{
     const server = new Hapi.server({
-        port:process.env.HAPI_PORT || 3000,
+        port:process.env.PORT || 3000,
         host:process.env.HAPI_HOST || 'localhost',
     })
 
@@ -21,6 +19,8 @@ const init = async()=>{
     {useNewUrlParser:true,
     useUnifiedTopology:true})
     .then(console.log("Connected to db."))
+
+   
    
 }
 
