@@ -37,5 +37,27 @@ module.exports=[
             }
 
         }
+       
+    },
+    {
+        method: 'GET',
+        path:'/userArticles/', 
+        handler:async(request,h)=>
+        {
+            let allUsers = await User.aggregate(
+                [
+                    {
+                        $lookup: 
+                        {
+                            from:'articles',
+                            localField:'_id', 
+                            foreignField:'userId', 
+                            as: 'articles'
+                        }
+                    }
+                ]
+            );
+            return allUsers;
+        }       
     }
 ]

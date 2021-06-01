@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 
 const ArticleSchema = new mongoose.Schema({
     userId:{
-        type: String,
+        type: mongoose.Types.ObjectId,
         required:true
     },
     title:String,
