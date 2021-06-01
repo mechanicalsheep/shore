@@ -10,14 +10,17 @@ const init = async()=>{
     })
 
     server.route(routeIndex);
-
+    
+    //start server
     await server.start();
     console.log("Shore backend running on %s", server.info.uri)
     
     //start mongo
-    mongoose.connect(process.env.MONGO_URL,
-    {useNewUrlParser:true,
-    useUnifiedTopology:true})
+    console.log(`Starting mongo at ${process.env.MONGO_URL}`)
+    mongoose.connect(
+        process.env.MONGO_URL,
+        {useNewUrlParser:true,useUnifiedTopology:true}
+    )
     .then(console.log("Connected to db."))
 
    
