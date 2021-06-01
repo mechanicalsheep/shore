@@ -6,9 +6,9 @@ const routeIndex = require('./API/index')
 const { startSession } = require('mongoose')
 
 const init = async()=>{
-    const server = Hapi.server({
-        port:3001,
-        host:'localhost'
+    const server = new Hapi.server({
+        port:process.env.HAPI_PORT || 3000,
+        host:process.env.HAPI_HOST || 'localhost',
     })
 
     server.route(routeIndex);
