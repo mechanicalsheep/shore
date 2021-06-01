@@ -19,7 +19,7 @@ const init = async()=>{
     console.log(`Starting mongo at ${process.env.MONGO_URL}`)
     mongoose.connect(
         process.env.MONGO_URL,
-        {useNewUrlParser:true,useUnifiedTopology:true}
+        {useNewUrlParser:true,useUnifiedTopology:true, useFindAndModify:false}
     )
     .then(console.log("Connected to db."))
 

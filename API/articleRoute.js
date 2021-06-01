@@ -25,5 +25,30 @@ module.exports=[
             return response.response(newArticle)
         }
 
+    },
+    {
+        method:'POST',
+        path:'/article/remove/',
+        handler: async(request, response)=>{
+            let id = request.query.id;
+            console.log(id);
+            let articleToDelete = await Article.findByIdAndDelete(id);
+            return response.response("ok.");
+        }
+
+    },
+    {
+        method:'PATCH',
+        path:'/article/modify/',
+        handler: async(request, response)=>{
+            let id = request.query.id;
+            let article_modified = request.payload;
+
+            console.log(id);
+            let article =await Article.findOneAndUpdate({_id:id},article_modified,{returnOriginal:false, useFindAndModify:false});
+            await article.save();
+            return response.response(article);
+        }
+
     }
 ]
